@@ -655,44 +655,66 @@ export default function ListBusiness() {
                 </div>
 
                 {/* Custom Products */}
-                <div className="space-y-3">
-                  <Label className="text-sm font-medium">Add custom products:</Label>
-                  <div className="flex gap-2">
-                    <Input
-                      value={newProductName}
-                      onChange={(e) => setNewProductName(e.target.value)}
-                      placeholder="Enter product name"
-                      onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addCustomProduct())}
-                    />
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={addCustomProduct}
-                      disabled={!newProductName.trim()}
-                    >
-                      <Plus className="h-4 w-4" />
-                    </Button>
+                <div className="space-y-4">
+                  <Label className="text-sm font-medium text-foreground">Add custom products:</Label>
+                  
+                  {/* Enhanced Add Product Input */}
+                  <div className="p-4 bg-gradient-to-br from-primary/5 to-primary/10 border-2 border-primary/20 rounded-lg transition-all duration-200 hover:border-primary/30 hover:shadow-sm">
+                    <div className="flex gap-3">
+                      <div className="flex-1">
+                        <Input
+                          value={newProductName}
+                          onChange={(e) => setNewProductName(e.target.value)}
+                          placeholder="Enter your custom product name..."
+                          onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addCustomProduct())}
+                          className="border-primary/20 bg-background/80 backdrop-blur-sm focus:border-primary/40 focus:ring-2 focus:ring-primary/20 transition-all duration-200"
+                        />
+                      </div>
+                      <Button
+                        type="button"
+                        variant="default"
+                        size="sm"
+                        onClick={addCustomProduct}
+                        disabled={!newProductName.trim()}
+                        className="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 shadow-sm hover:shadow-md transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <Plus className="h-4 w-4 mr-1" />
+                        Add
+                      </Button>
+                    </div>
+                    
+                    {newProductName.trim() && (
+                      <div className="mt-2 text-xs text-muted-foreground">
+                        Press Enter or click Add to include "{newProductName.trim()}" in your catalog
+                      </div>
+                    )}
                   </div>
                   
                   {/* Display Custom Products */}
                   {customProducts.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
-                      {customProducts.map((product) => (
-                        <div
-                          key={product}
-                          className="flex items-center gap-1 px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm"
-                        >
-                          <span>{product}</span>
-                          <button
-                            type="button"
-                            onClick={() => removeCustomProduct(product)}
-                            className="ml-1 hover:text-destructive transition-colors"
+                    <div className="space-y-2">
+                      <Label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                        Your Custom Products ({customProducts.length})
+                      </Label>
+                      <div className="flex flex-wrap gap-2">
+                        {customProducts.map((product) => (
+                          <div
+                            key={product}
+                            className="group flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/80 hover:to-secondary border border-border rounded-lg text-sm transition-all duration-200 hover:shadow-sm"
                           >
-                            <X className="h-3 w-3" />
-                          </button>
-                        </div>
-                      ))}
+                            <Package className="h-3 w-3 text-muted-foreground" />
+                            <span className="font-medium text-secondary-foreground">{product}</span>
+                            <button
+                              type="button"
+                              onClick={() => removeCustomProduct(product)}
+                              className="ml-1 p-0.5 rounded-full hover:bg-destructive/10 hover:text-destructive transition-all duration-200 opacity-0 group-hover:opacity-100"
+                              title="Remove product"
+                            >
+                              <X className="h-3 w-3" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
