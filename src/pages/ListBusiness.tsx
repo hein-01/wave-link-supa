@@ -12,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/hooks/use-toast";
-import { Building2, Upload, Calendar, MapPin, Phone, Globe, Facebook, Music, DollarSign, Package, Camera, CreditCard } from "lucide-react";
+import { Building2, Upload, Calendar, MapPin, Phone, Globe, Facebook, Music, DollarSign, Package, Camera, CreditCard, Plus, X } from "lucide-react";
 
 interface BusinessFormData {
   name: string;
@@ -29,7 +29,7 @@ interface BusinessFormData {
   tiktokUrl: string;
   startingPrice: string;
   options: string[];
-  productsCatalog: string;
+  productsCatalog: string[];
   onlineShopOption: string;
   paymentOption: string;
 }
@@ -55,6 +55,15 @@ const BUSINESS_CATEGORIES = [
   "Other"
 ];
 
+const PREDEFINED_PRODUCTS = [
+  "Espresso Latte",
+  "Cappuccino",
+  "Cold Brew",
+  "Tea",
+  "Pastries",
+  "Sandwiches"
+];
+
 export default function ListBusiness() {
   const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
@@ -63,6 +72,8 @@ export default function ListBusiness() {
   const [logoFile, setLogoFile] = useState<File | null>(null);
   const [productImages, setProductImages] = useState<File[]>([]);
   const [receiptFile, setReceiptFile] = useState<File | null>(null);
+  const [customProducts, setCustomProducts] = useState<string[]>([]);
+  const [newProductName, setNewProductName] = useState("");
   
   const [formData, setFormData] = useState<BusinessFormData>({
     name: "",
@@ -79,7 +90,7 @@ export default function ListBusiness() {
     tiktokUrl: "",
     startingPrice: "",
     options: [],
-    productsCatalog: "",
+    productsCatalog: [],
     onlineShopOption: "maybe",
     paymentOption: "stripe"
   });
@@ -94,6 +105,35 @@ export default function ListBusiness() {
       options: checked 
         ? [...prev.options, option]
         : prev.options.filter(opt => opt !== option)
+    }));
+  };
+
+  const handleProductChange = (product: string, checked: boolean) => {
+    setFormData(prev => ({
+      ...prev,
+      productsCatalog: checked 
+        ? [...prev.productsCatalog, product]
+        : prev.productsCatalog.filter(p => p !== product)
+    }));
+  };
+
+  const addCustomProduct = () => {
+    if (newProductName.trim() && !customProducts.includes(newProductName.trim())) {
+      const newProduct = newProductName.trim();
+      setCustomProducts(prev => [...prev, newProduct]);
+      setFormData(prev => ({
+        ...prev,
+        productsCatalog: [...prev.productsCatalog, newProduct]
+      }));
+      setNewProductName("");
+    }
+  };
+
+  const removeCustomProduct = (product: string) => {
+    setCustomProducts(prev => prev.filter(p => p !== product));
+    setFormData(prev => ({
+      ...prev,
+      productsCatalog: prev.productsCatalog.filter(p => p !== product)
     }));
   };
 
@@ -245,7 +285,7 @@ export default function ListBusiness() {
           tiktok_url: formData.tiktokUrl || null,
           starting_price: formData.startingPrice || null,
           business_options: formData.options.length > 0 ? formData.options : null,
-          products_catalog: formData.productsCatalog || null,
+          products_catalog: formData.productsCatalog.length > 0 ? formData.productsCatalog.join(', ') : null,
           license_expired_date: formData.licenseExpiredDate || null,
           product_images: imageUrls.length > 0 ? imageUrls : null
         });
@@ -589,17 +629,72 @@ export default function ListBusiness() {
               </div>
 
               {/* Products Catalog */}
-              <div className="space-y-2">
-                <Label htmlFor="productsCatalog">Products Catalog</Label>
-                <div className="flex items-start gap-2">
-                  <Package className="h-4 w-4 text-muted-foreground mt-1" />
-                  <Textarea
-                    id="productsCatalog"
-                    value={formData.productsCatalog}
-                    onChange={(e) => handleInputChange('productsCatalog', e.target.value)}
-                    placeholder="List your main products or services with brief descriptions..."
-                    rows={4}
-                  />
+              <div className="space-y-4">
+                <Label className="flex items-center gap-2">
+                  <Package className="h-4 w-4" />
+                  Products Catalog
+                </Label>
+                
+                {/* Predefined Products */}
+                <div className="space-y-3">
+                  <Label className="text-sm font-medium">Select from popular products:</Label>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {PREDEFINED_PRODUCTS.map((product) => (
+                      <div key={product} className="flex items-center space-x-2">
+                        <Checkbox
+                          id={product}
+                          checked={formData.productsCatalog.includes(product)}
+                          onCheckedChange={(checked) => handleProductChange(product, checked === true)}
+                        />
+                        <Label htmlFor={product} className="text-sm font-normal">
+                          {product}
+                        </Label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Custom Products */}
+                <div className="space-y-3">
+                  <Label className="text-sm font-medium">Add custom products:</Label>
+                  <div className="flex gap-2">
+                    <Input
+                      value={newProductName}
+                      onChange={(e) => setNewProductName(e.target.value)}
+                      placeholder="Enter product name"
+                      onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addCustomProduct())}
+                    />
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={addCustomProduct}
+                      disabled={!newProductName.trim()}
+                    >
+                      <Plus className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  
+                  {/* Display Custom Products */}
+                  {customProducts.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {customProducts.map((product) => (
+                        <div
+                          key={product}
+                          className="flex items-center gap-1 px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm"
+                        >
+                          <span>{product}</span>
+                          <button
+                            type="button"
+                            onClick={() => removeCustomProduct(product)}
+                            className="ml-1 hover:text-destructive transition-colors"
+                          >
+                            <X className="h-3 w-3" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
 
