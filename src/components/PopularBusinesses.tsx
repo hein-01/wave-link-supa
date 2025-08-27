@@ -38,16 +38,37 @@ const PopularBusinesses = () => {
 
   const fetchBusinesses = async () => {
     try {
-      const { data, error } = await supabase.rpc('get_public_businesses');
-      
+      // Query businesses table directly to get all fields including products_catalog
+      const { data, error } = await supabase
+        .from('businesses')
+        .select(`
+          id,
+          name,
+          description,
+          category,
+          city,
+          state,
+          rating,
+          image_url,
+          website,
+          product_images,
+          business_options,
+          starting_price,
+          license_expired_date,
+          products_catalog
+        `)
+        .limit(10);
+        
       if (error) {
         console.error('Error fetching businesses:', error);
         return;
       }
-
-      if (data) {
-        setBusinesses(data);
+      
+      console.log('Fetched businesses data:', data);
+      if (data && data.length > 0) {
+        console.log('First business products_catalog:', data[0]?.products_catalog);
       }
+      setBusinesses(data || []);
     } catch (error) {
       console.error('Error:', error);
     } finally {
@@ -94,9 +115,15 @@ const PopularBusinesses = () => {
   };
 
   const parseProductsCatalog = (catalogString?: string | null) => {
-    if (!catalogString) return [];
+    console.log('Raw products_catalog:', catalogString);
+    if (!catalogString) {
+      console.log('No catalog string found');
+      return [];
+    }
     try {
-      return JSON.parse(catalogString);
+      const parsed = JSON.parse(catalogString);
+      console.log('Parsed products catalog:', parsed);
+      return parsed;
     } catch (error) {
       console.error('Error parsing products catalog:', error);
       return [];
