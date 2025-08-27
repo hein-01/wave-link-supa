@@ -116,18 +116,31 @@ const PopularBusinesses = () => {
 
   const parseProductsCatalog = (catalogString?: string | null) => {
     console.log('Raw products_catalog:', catalogString);
-    if (!catalogString) {
-      console.log('No catalog string found');
+    if (!catalogString || catalogString.trim() === '') {
+      console.log('No catalog string found or empty');
       return [];
     }
+    
+    // Try to parse as JSON first (in case it's stored as JSON array)
     try {
       const parsed = JSON.parse(catalogString);
-      console.log('Parsed products catalog:', parsed);
-      return parsed;
+      if (Array.isArray(parsed)) {
+        console.log('Parsed as JSON array:', parsed);
+        return parsed;
+      }
     } catch (error) {
-      console.error('Error parsing products catalog:', error);
-      return [];
+      // If JSON parsing fails, treat as comma-separated string
+      console.log('JSON parsing failed, treating as comma-separated string');
     }
+    
+    // Parse as comma-separated string
+    const products = catalogString
+      .split(',')
+      .map(item => item.trim())
+      .filter(item => item.length > 0);
+    
+    console.log('Parsed as comma-separated string:', products);
+    return products;
   };
 
   if (loading) {
