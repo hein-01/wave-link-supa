@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Star, Bookmark, CheckCircle, Check, X, BadgeCheck, MapPin, ChevronRight, ChevronLeft } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
@@ -23,11 +24,13 @@ interface Business {
   business_options?: string[] | null;
   starting_price?: string | null;
   license_expired_date?: string | null;
+  products_catalog?: string | null;
 }
 
 const PopularBusinesses = () => {
   const [businesses, setBusinesses] = useState<Business[]>([]);
   const [loading, setLoading] = useState(true);
+  const [openModal, setOpenModal] = useState<string | null>(null);
 
   useEffect(() => {
     fetchBusinesses();
@@ -88,6 +91,16 @@ const PopularBusinesses = () => {
     currentDate.setHours(0, 0, 0, 0);
     
     return expiryDate >= currentDate;
+  };
+
+  const parseProductsCatalog = (catalogString?: string | null) => {
+    if (!catalogString) return [];
+    try {
+      return JSON.parse(catalogString);
+    } catch (error) {
+      console.error('Error parsing products catalog:', error);
+      return [];
+    }
   };
 
   if (loading) {
@@ -216,12 +229,35 @@ const PopularBusinesses = () => {
                 </div>
                 
                 <div className="space-y-2 mt-2">
-                  <Button 
-                    variant="outline" 
-                    className="w-full h-8 text-xs bg-[#F5F8FA] hover:bg-[#E8EEF2] border-border"
-                  >
-                    See Products Catalog
-                  </Button>
+                  <Dialog open={openModal === business.id} onOpenChange={(open) => setOpenModal(open ? business.id : null)}>
+                    <DialogTrigger asChild>
+                      <Button 
+                        variant="outline" 
+                        className="w-full h-8 text-xs bg-[#F5F8FA] hover:bg-[#E8EEF2] border-border"
+                      >
+                        See Products Catalog
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto">
+                      <DialogHeader>
+                        <DialogTitle>{business.name} - Products Catalog</DialogTitle>
+                      </DialogHeader>
+                      <div className="space-y-3">
+                        {parseProductsCatalog(business.products_catalog).length > 0 ? (
+                          parseProductsCatalog(business.products_catalog).map((product: string, index: number) => (
+                            <div key={index} className="flex items-center space-x-2 p-3 bg-muted/50 rounded-lg">
+                              <Check className="w-4 h-4 text-primary" />
+                              <span className="text-sm">{product}</span>
+                            </div>
+                          ))
+                        ) : (
+                          <div className="text-center py-8 text-muted-foreground">
+                            <p>No products catalog available</p>
+                          </div>
+                        )}
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                   
                   <Button 
                     className="w-full h-8 text-xs flex items-center justify-center gap-1"
