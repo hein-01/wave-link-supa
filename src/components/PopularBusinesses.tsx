@@ -58,7 +58,7 @@ const PopularBusinesses = () => {
           products_catalog
         `)
         .order('created_at', { ascending: false })
-        .limit(10);
+        .limit(6);
         
       if (error) {
         console.error('Error fetching businesses:', error);
