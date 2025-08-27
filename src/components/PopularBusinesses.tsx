@@ -57,6 +57,7 @@ const PopularBusinesses = () => {
           license_expired_date,
           products_catalog
         `)
+        .order('created_at', { ascending: false })
         .limit(10);
         
       if (error) {
