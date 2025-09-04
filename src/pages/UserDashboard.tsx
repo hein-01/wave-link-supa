@@ -367,7 +367,7 @@ export default function UserDashboard() {
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {userBusinesses.map((business) => (
             <div key={business.id} className="relative">
-              <div className="absolute top-2 right-10 z-40">
+              <div className="absolute top-2 right-12 z-40">
                 <Button
                   onClick={() => handleEditBusiness(business)}
                   size="sm"
