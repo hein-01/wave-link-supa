@@ -51,7 +51,6 @@ const sidebarItems = [
   { title: "Add Listing", icon: Plus, action: "add-listing" },
   { title: "Get Website + POS", icon: Globe, action: "website-pos" },
   { title: "My Listings", icon: Building2, action: "listings" },
-  { title: "Upgrade Listings", icon: ArrowUp, action: "upgrade" },
   { title: "Subscriptions", icon: CreditCard, action: "subscription" },
   { title: "Profile Info", icon: User, action: "profile" },
   { title: "Email Settings", icon: Mail, action: "email" },
@@ -128,6 +127,7 @@ export default function UserDashboard() {
   React.useEffect(() => {
     if (user?.id) {
       fetchDashboardCounts();
+      fetchUserBusinesses();
     }
   }, [user?.id]);
 
@@ -219,7 +219,7 @@ export default function UserDashboard() {
     
     if (action === "website-pos") {
       navigate("/list-&-get-pos-website");
-    } else if (action === "listings" || action === "subscription" || action === "upgrade") {
+    } else if (action === "listings" || action === "subscription") {
       fetchUserBusinesses();
     } else if (action === "wishlists") {
       console.log('Wishlists section selected, fetching bookmarks');
@@ -416,93 +416,6 @@ export default function UserDashboard() {
           </div>
         );
 
-      case "upgrade":
-        const currentDate = new Date();
-        
-        return (
-          <div className="space-y-6 animate-fade-in">
-            <h2 className="text-3xl font-bold bg-gradient-to-r from-dashboard-gradient-start to-dashboard-gradient-end bg-clip-text text-transparent">Upgrade Listings</h2>
-            {loadingBusinesses ? (
-              <div className="text-center py-8">
-                <p className="text-muted-foreground">Loading your businesses...</p>
-              </div>
-            ) : userBusinesses.length > 0 ? (
-              <Card>
-                <CardContent className="p-0">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Business Name</TableHead>
-                        <TableHead>Listing Expires</TableHead>
-                        <TableHead>Odoo Expires</TableHead>
-                        <TableHead>Actions</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {userBusinesses.map((business) => {
-                        const listingExpired = business.listing_expired_date && new Date(business.listing_expired_date) < currentDate;
-                        const odooExpired = business.odoo_expired_date && new Date(business.odoo_expired_date) < currentDate;
-                        const canUpgrade = listingExpired || odooExpired;
-                        
-                        return (
-                          <TableRow key={business.id}>
-                            <TableCell className="font-medium">{business.name}</TableCell>
-                            <TableCell>
-                              {business.listing_expired_date ? (
-                                <span className={listingExpired ? 'text-destructive' : 'text-muted-foreground'}>
-                                  {new Date(business.listing_expired_date).toLocaleDateString()}
-                                </span>
-                              ) : (
-                                <span className="text-muted-foreground">No expiry</span>
-                              )}
-                            </TableCell>
-                            <TableCell>
-                              {business.odoo_expired_date ? (
-                                <span className={odooExpired ? 'text-destructive' : 'text-muted-foreground'}>
-                                  {new Date(business.odoo_expired_date).toLocaleDateString()}
-                                </span>
-                              ) : (
-                                <span className="text-muted-foreground">N/A</span>
-                              )}
-                            </TableCell>
-                            <TableCell>
-                              <Button
-                                size="sm"
-                                disabled={!canUpgrade}
-                                onClick={() => {
-                                  setSelectedBusiness(business);
-                                  setUpgradeModalOpen(true);
-                                }}
-                                className={canUpgrade ? "bg-primary hover:bg-primary/90" : ""}
-                              >
-                                Upgrade
-                              </Button>
-                            </TableCell>
-                          </TableRow>
-                        );
-                      })}
-                    </TableBody>
-                  </Table>
-                </CardContent>
-              </Card>
-            ) : (
-              <Card>
-                <CardContent className="pt-6">
-                  <p className="text-muted-foreground text-center py-8">
-                    No business listings found. 
-                    <Button 
-                      variant="link" 
-                      className="ml-2 p-0 h-auto"
-                      onClick={() => setActiveSection("add-listing")}
-                    >
-                      Create your first listing
-                    </Button>
-                  </p>
-                </CardContent>
-              </Card>
-            )}
-          </div>
-        );
 
       case "subscription":
         const activePOSBusinesses = userBusinesses.filter(business => business["POS+Website"] === 1);
@@ -645,6 +558,96 @@ export default function UserDashboard() {
                   <span className="font-medium">Get Website</span>
                 </Button>
               </div>
+            </div>
+            
+            {/* Upgrade Listings Section */}
+            <div className="animate-slide-up">
+              <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                <ArrowUp className="h-5 w-5 text-primary" />
+                Upgrade Listings
+              </h3>
+              {loadingBusinesses ? (
+                <Card>
+                  <CardContent className="py-8">
+                    <p className="text-muted-foreground text-center">Loading your businesses...</p>
+                  </CardContent>
+                </Card>
+              ) : userBusinesses.length > 0 ? (
+                <Card>
+                  <CardContent className="p-0">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Business Name</TableHead>
+                          <TableHead>Listing Expires</TableHead>
+                          <TableHead>Odoo Expires</TableHead>
+                          <TableHead>Actions</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {userBusinesses.map((business) => {
+                          const currentDate = new Date();
+                          const listingExpired = business.listing_expired_date && new Date(business.listing_expired_date) < currentDate;
+                          const odooExpired = business.odoo_expired_date && new Date(business.odoo_expired_date) < currentDate;
+                          const canUpgrade = listingExpired || odooExpired;
+                          
+                          return (
+                            <TableRow key={business.id}>
+                              <TableCell className="font-medium">{business.name}</TableCell>
+                              <TableCell>
+                                {business.listing_expired_date ? (
+                                  <span className={listingExpired ? 'text-destructive' : 'text-muted-foreground'}>
+                                    {new Date(business.listing_expired_date).toLocaleDateString()}
+                                  </span>
+                                ) : (
+                                  <span className="text-muted-foreground">No expiry</span>
+                                )}
+                              </TableCell>
+                              <TableCell>
+                                {business.odoo_expired_date ? (
+                                  <span className={odooExpired ? 'text-destructive' : 'text-muted-foreground'}>
+                                    {new Date(business.odoo_expired_date).toLocaleDateString()}
+                                  </span>
+                                ) : (
+                                  <span className="text-muted-foreground">N/A</span>
+                                )}
+                              </TableCell>
+                              <TableCell>
+                                <Button
+                                  size="sm"
+                                  disabled={!canUpgrade}
+                                  onClick={() => {
+                                    setSelectedBusiness(business);
+                                    setUpgradeModalOpen(true);
+                                  }}
+                                  className={canUpgrade ? "bg-primary hover:bg-primary/90" : ""}
+                                >
+                                  Upgrade
+                                </Button>
+                              </TableCell>
+                            </TableRow>
+                          );
+                        })}
+                      </TableBody>
+                    </Table>
+                  </CardContent>
+                </Card>
+              ) : (
+                <Card>
+                  <CardContent className="py-8">
+                    <p className="text-muted-foreground text-center">
+                      No business listings found. 
+                      <Button 
+                        variant="link" 
+                        className="ml-2 p-0 h-auto"
+                        onClick={() => setActiveSection("add-listing")}
+                      >
+                        Create your first listing
+                      </Button>
+                    </p>
+                  </CardContent>
+                </Card>
+              )}
             </div>
             
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
