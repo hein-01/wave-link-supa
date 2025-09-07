@@ -468,25 +468,25 @@ export default function UserDashboard() {
                 <Button 
                   onClick={() => handleSidebarAction("listings")}
                   variant="outline"
-                  className="h-auto p-6 flex-col gap-2 bg-dashboard-card-bg hover:bg-dashboard-accent border-dashboard-shadow"
+                  className="h-auto p-6 flex-col gap-2 bg-[hsl(var(--quick-actions-manage))] hover:bg-[hsl(var(--quick-actions-manage))]/80 border-[hsl(var(--quick-actions-manage-foreground))]/20 text-[hsl(var(--quick-actions-manage-foreground))]"
                 >
-                  <Building2 className="h-6 w-6" />
+                  <Building2 className="h-6 w-6 text-[hsl(var(--quick-actions-manage-foreground))]" />
                   <span className="font-medium">Manage Listings</span>
                 </Button>
                 <Button 
                   onClick={() => handleSidebarAction("wishlists")}
                   variant="outline"
-                  className="h-auto p-6 flex-col gap-2 bg-dashboard-card-bg hover:bg-dashboard-accent border-dashboard-shadow"
+                  className="h-auto p-6 flex-col gap-2 bg-[hsl(var(--quick-actions-saved))] hover:bg-[hsl(var(--quick-actions-saved))]/80 border-[hsl(var(--quick-actions-saved-foreground))]/20 text-[hsl(var(--quick-actions-saved-foreground))]"
                 >
-                  <Heart className="h-6 w-6" />
+                  <Heart className="h-6 w-6 text-[hsl(var(--quick-actions-saved-foreground))]" />
                   <span className="font-medium">View Saved</span>
                 </Button>
                 <Button 
                   onClick={() => handleSidebarAction("website-pos")}
                   variant="outline"
-                  className="h-auto p-6 flex-col gap-2 bg-dashboard-card-bg hover:bg-dashboard-accent border-dashboard-shadow"
+                  className="h-auto p-6 flex-col gap-2 bg-[hsl(var(--quick-actions-website))] hover:bg-[hsl(var(--quick-actions-website))]/80 border-[hsl(var(--quick-actions-website-foreground))]/20 text-[hsl(var(--quick-actions-website-foreground))]"
                 >
-                  <Globe className="h-6 w-6" />
+                  <Globe className="h-6 w-6 text-[hsl(var(--quick-actions-website-foreground))]" />
                   <span className="font-medium">Get Website</span>
                 </Button>
               </div>
