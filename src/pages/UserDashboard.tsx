@@ -609,64 +609,6 @@ export default function UserDashboard() {
               )}
             </div>
             
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              <Card className="relative overflow-hidden bg-dashboard-card-bg border-0 shadow-lg hover:shadow-xl transition-all duration-300 animate-scale-in">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-blue-600/5"></div>
-                <CardHeader className="relative pb-3">
-                  <CardTitle className="flex items-center gap-3 text-lg">
-                    <div className="p-2 bg-blue-500/10 rounded-lg">
-                      <Building2 className="h-5 w-5 text-blue-600" />
-                    </div>
-                    My Listings
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="relative">
-                  <div className="flex items-end gap-2">
-                    <p className="text-3xl font-bold text-blue-600">{businessCount}</p>
-                    <p className="text-sm text-muted-foreground pb-1">active</p>
-                  </div>
-                </CardContent>
-              </Card>
-              
-              <Card className="relative overflow-hidden bg-dashboard-card-bg border-0 shadow-lg hover:shadow-xl transition-all duration-300 animate-scale-in" style={{animationDelay: '0.1s'}}>
-                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-pink-600/5"></div>
-                <CardHeader className="relative pb-3">
-                  <CardTitle className="flex items-center gap-3 text-lg">
-                    <div className="p-2 bg-pink-500/10 rounded-lg">
-                      <Heart className="h-5 w-5 text-pink-600" />
-                    </div>
-                    Saved
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="relative">
-                  <div className="flex items-end gap-2">
-                    <p className="text-3xl font-bold text-pink-600">{bookmarkCount}</p>
-                    <p className="text-sm text-muted-foreground pb-1">bookmarks</p>
-                  </div>
-                </CardContent>
-              </Card>
-              
-              <Card className="relative overflow-hidden bg-dashboard-card-bg border-0 shadow-lg hover:shadow-xl transition-all duration-300 animate-scale-in" style={{animationDelay: '0.2s'}}>
-                <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-green-600/5"></div>
-                <CardHeader className="relative pb-3">
-                  <CardTitle className="flex items-center gap-3 text-lg">
-                    <div className="p-2 bg-green-500/10 rounded-lg">
-                      <CreditCard className="h-5 w-5 text-green-600" />
-                    </div>
-                    Current Plan
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="relative">
-                  <div className="space-y-3">
-                    <p className="text-2xl font-bold text-green-600">Free Tier</p>
-                    <p className="text-sm text-muted-foreground">Basic features included</p>
-                    <Button size="sm" className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 border-0">
-                      Upgrade Plan
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
             
           </div>
         );
