@@ -466,14 +466,6 @@ export default function UserDashboard() {
                   <span className="font-medium">List Your Business</span>
                 </Button>
                 <Button 
-                  onClick={() => handleSidebarAction("listings")}
-                  variant="outline"
-                  className="h-auto p-6 flex-col gap-2 bg-[hsl(var(--quick-actions-manage))] hover:bg-[hsl(var(--quick-actions-manage-hover))] border-[hsl(var(--quick-actions-manage-foreground))]/20 text-[hsl(var(--quick-actions-manage-foreground))] shadow-lg shadow-[hsl(var(--quick-actions-manage-foreground))]/10 transition-all duration-200"
-                >
-                  <Building2 className="h-6 w-6 text-[hsl(var(--quick-actions-manage-foreground))]" />
-                  <span className="font-medium">Manage Listings</span>
-                </Button>
-                <Button 
                   onClick={() => handleSidebarAction("wishlists")}
                   variant="outline"
                   className="h-auto p-6 flex-col gap-2 bg-[hsl(var(--quick-actions-saved))] hover:bg-[hsl(var(--quick-actions-saved-hover))] border-[hsl(var(--quick-actions-saved-foreground))]/20 text-[hsl(var(--quick-actions-saved-foreground))] shadow-lg shadow-[hsl(var(--quick-actions-saved-foreground))]/10 transition-all duration-200"
@@ -488,6 +480,14 @@ export default function UserDashboard() {
                 >
                   <Globe className="h-6 w-6 text-[hsl(var(--quick-actions-website-foreground))]" />
                   <span className="font-medium">Get Website + POS</span>
+                </Button>
+                <Button 
+                  onClick={() => handleSidebarAction("listings")}
+                  variant="outline"
+                  className="h-auto p-6 flex-col gap-2 bg-[hsl(var(--quick-actions-manage))] hover:bg-[hsl(var(--quick-actions-manage-hover))] border-[hsl(var(--quick-actions-manage-foreground))]/20 text-[hsl(var(--quick-actions-manage-foreground))] shadow-lg shadow-[hsl(var(--quick-actions-manage-foreground))]/10 transition-all duration-200"
+                >
+                  <Building2 className="h-6 w-6 text-[hsl(var(--quick-actions-manage-foreground))]" />
+                  <span className="font-medium">Manage Listings</span>
                 </Button>
               </div>
             </div>
