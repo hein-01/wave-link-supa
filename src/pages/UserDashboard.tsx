@@ -487,7 +487,7 @@ export default function UserDashboard() {
                   className="h-auto p-6 flex-col gap-2 bg-[hsl(var(--quick-actions-website))] hover:bg-[hsl(var(--quick-actions-website-hover))] border-[hsl(var(--quick-actions-website-foreground))]/20 text-[hsl(var(--quick-actions-website-foreground))] shadow-lg shadow-[hsl(var(--quick-actions-website-foreground))]/10 transition-all duration-200"
                 >
                   <Globe className="h-6 w-6 text-[hsl(var(--quick-actions-website-foreground))]" />
-                  <span className="font-medium">Get Website</span>
+                  <span className="font-medium">Get Website + POS</span>
                 </Button>
               </div>
             </div>
