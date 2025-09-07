@@ -49,7 +49,7 @@ import {
 const sidebarItems = [
   { title: "Dashboard", icon: Home, action: "dashboard" },
   { title: "Saved Listings", icon: Heart, action: "wishlists" },
-  { title: "Add Listing", icon: Plus, action: "add-listing" },
+  { title: "List Your Business", icon: Plus, action: "add-listing" },
   { title: "Get Website + POS", icon: Globe, action: "website-pos" },
   { title: "My Listings", icon: Building2, action: "listings" },
   { title: "Profile Info", icon: User, action: "profile" },
@@ -429,7 +429,7 @@ export default function UserDashboard() {
       case "add-listing":
         return (
           <div className="space-y-6 animate-fade-in">
-            <h2 className="text-3xl font-bold bg-gradient-to-r from-dashboard-gradient-start to-dashboard-gradient-end bg-clip-text text-transparent">Add New Business Listing</h2>
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-dashboard-gradient-start to-dashboard-gradient-end bg-clip-text text-transparent">List Your Business</h2>
             <BusinessForm onSuccess={() => {
               setActiveSection("listings");
               fetchUserBusinesses();
@@ -463,7 +463,7 @@ export default function UserDashboard() {
                   className="h-auto p-6 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 flex-col gap-2 border-0 shadow-lg"
                 >
                   <Plus className="h-6 w-6" />
-                  <span className="font-medium">Add Listing</span>
+                  <span className="font-medium">List Your Business</span>
                 </Button>
                 <Button 
                   onClick={() => handleSidebarAction("listings")}
