@@ -30,7 +30,7 @@ const MobileNavBar = () => {
       id: "setting",
       label: "Setting",
       icon: Settings,
-      path: "/settings",
+      path: "/dashboard",
       colors: "text-purple-500"
     }
   ];
