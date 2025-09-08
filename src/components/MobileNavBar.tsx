@@ -53,7 +53,7 @@ const MobileNavBar = () => {
             <Link
               key={item.id}
               to={item.path}
-              className={`flex flex-col items-center justify-center flex-1 h-full rounded-lg mx-1 transition-colors duration-200 ${
+              className={`flex flex-col items-center justify-center flex-1 h-full transition-colors duration-200 ${
                 active ? 'bg-purple-100' : 'hover:bg-gray-50'
               }`}
             >
