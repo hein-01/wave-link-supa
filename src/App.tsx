@@ -19,6 +19,7 @@ import ProtectedAdminRoute from "./components/admin/ProtectedAdminRoute";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ListAndGetPOS from "./pages/ListAndGetPOS";
 import UserDashboard from "./pages/UserDashboard";
+import MobileNavBar from "./components/MobileNavBar";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +55,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <MobileNavBar />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
