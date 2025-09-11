@@ -233,21 +233,21 @@ export type Database = {
           created_at: string
           id: string
           province_district: string
-          town: string
+          towns: string[]
           updated_at: string
         }
         Insert: {
           created_at?: string
           id?: string
           province_district: string
-          town: string
+          towns?: string[]
           updated_at?: string
         }
         Update: {
           created_at?: string
           id?: string
           province_district?: string
-          town?: string
+          towns?: string[]
           updated_at?: string
         }
         Relationships: []

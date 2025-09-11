@@ -19,7 +19,7 @@ import { supabase } from "@/integrations/supabase/client";
 interface Location {
   id: string;
   province_district: string;
-  town: string;
+  towns: string[];
 }
 
 interface LocationsModalProps {
@@ -73,8 +73,10 @@ export const LocationsModal = ({
     } else {
       const provinceTowns = locations
         .filter(loc => loc.province_district === selectedProvince)
-        .map(loc => loc.town);
-      setTowns(provinceTowns);
+        .flatMap(loc => loc.towns || []);
+      // Remove duplicates
+      const uniqueTowns = Array.from(new Set(provinceTowns));
+      setTowns(uniqueTowns);
       setSelectedTown("all");
     }
   }, [selectedProvince, locations]);

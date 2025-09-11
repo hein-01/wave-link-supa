@@ -11,7 +11,7 @@ import { LocationFormModal } from "./LocationFormModal";
 interface Location {
   id: string;
   province_district: string;
-  town: string;
+  towns: string[];
   created_at: string;
 }
 
@@ -129,10 +129,21 @@ export function LocationsManagement() {
               ) : (
                 locations.map((location) => (
                   <TableRow key={location.id}>
-                    <TableCell className="font-medium">
-                      {location.province_district}
-                    </TableCell>
-                    <TableCell>{location.town}</TableCell>
+                  <TableCell className="font-medium">
+                    {location.province_district}
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex flex-wrap gap-1">
+                      {location.towns.map((town, index) => (
+                        <span 
+                          key={index}
+                          className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-primary/10 text-primary"
+                        >
+                          {town}
+                        </span>
+                      ))}
+                    </div>
+                  </TableCell>
                     <TableCell>
                       <div className="flex items-center space-x-2">
                         <Button
