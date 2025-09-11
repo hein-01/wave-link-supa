@@ -228,6 +228,30 @@ export type Database = {
         }
         Relationships: []
       }
+      locations: {
+        Row: {
+          created_at: string
+          id: string
+          province_district: string
+          town: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          province_district: string
+          town: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          province_district?: string
+          town?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       login_attempts: {
         Row: {
           created_at: string

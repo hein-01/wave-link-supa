@@ -11,6 +11,7 @@ import ListingManagement from "@/components/admin/ListingManagement";
 import ToBeConfirmedListings from "@/components/admin/ToBeConfirmedListings";
 import { PlansManagement } from "@/components/admin/PlansManagement";
 import { CategoriesManagement } from "@/components/admin/CategoriesManagement";
+import { LocationsManagement } from "@/components/admin/LocationsManagement";
 import { 
   Shield, 
   Users, 
@@ -154,6 +155,13 @@ export default function AdminDashboard() {
             {/* Categories Management */}
             <div>
               <CategoriesManagement />
+            </div>
+
+            <Separator />
+
+            {/* Locations Management */}
+            <div>
+              <LocationsManagement />
             </div>
 
             <Separator />
