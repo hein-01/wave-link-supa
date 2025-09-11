@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Search, Filter, Truck, Store } from "lucide-react";
+import { Search, Filter, Truck, Store, MapPin } from "lucide-react";
 import { FiltersModal } from "./FiltersModal";
+import { LocationsModal } from "./LocationsModal";
 
 interface SearchFiltersProps {
   onSearchChange: (search: string) => void;
@@ -56,6 +57,17 @@ export const SearchFilters = ({
                 className="pl-10 border-2 shadow-sm hover:shadow-md focus:shadow-lg focus:border-purple-500 focus-visible:ring-2 focus-visible:ring-purple-500/20 transition-all duration-200"
               />
             </form>
+            
+            <LocationsModal onLocationChange={onLocationChange}>
+              <Button 
+                type="button" 
+                variant="outline"
+                className="border-2 shadow-md hover:shadow-lg transition-shadow duration-200"
+              >
+                <MapPin className="h-4 w-4 mr-2" />
+                Locations
+              </Button>
+            </LocationsModal>
             
             <FiltersModal
               onSearchChange={onSearchChange}
