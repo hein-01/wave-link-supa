@@ -107,7 +107,19 @@ export default function FindShops() {
 
       // Apply location filter
       if (locationFilter) {
-        query = query.or(`towns.ilike.%${locationFilter}%,province_district.ilike.%${locationFilter}%`);
+        if (locationFilter) {
+          if (locationFilter.includes(",")) {
+            const [town, province] = locationFilter.split(",").map((s) => s.trim());
+            if (town) {
+              query = query.ilike("towns", `%${town}%`);
+            }
+            if (province) {
+              query = query.ilike("province_district", `%${province}%`);
+            }
+          } else {
+            query = query.or(`towns.ilike.%${locationFilter}%,province_district.ilike.%${locationFilter}%`);
+          }
+        }
       }
 
       const { data, error } = await query;
