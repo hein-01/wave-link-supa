@@ -56,13 +56,8 @@ export default function FindShops() {
   useEffect(() => {
     setCurrentPage(0);
     setHasMore(true);
-    // Only fetch if there's a search term, category filter, or location filter
-    if (searchTerm || selectedCategory !== "all" || locationFilter) {
-      fetchBusinesses(true);
-    } else {
-      setBusinesses([]);
-      setLoading(false);
-    }
+    // Always fetch businesses - either with filters or show all
+    fetchBusinesses(true);
   }, [searchTerm, selectedCategory, locationFilter]);
 
   const fetchCategories = async () => {
