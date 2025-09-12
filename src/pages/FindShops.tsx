@@ -15,8 +15,8 @@ interface Business {
   description?: string;
   category: string;
   address?: string;
-  city?: string;
-  state?: string;
+  towns?: string;
+  province_district?: string;
   zip_code?: string;
   phone?: string;
   email?: string;
@@ -107,7 +107,7 @@ export default function FindShops() {
 
       // Apply location filter
       if (locationFilter) {
-        query = query.or(`city.ilike.%${locationFilter}%,state.ilike.%${locationFilter}%`);
+        query = query.or(`towns.ilike.%${locationFilter}%,province_district.ilike.%${locationFilter}%`);
       }
 
       const { data, error } = await query;
