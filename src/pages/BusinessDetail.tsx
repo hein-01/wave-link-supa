@@ -17,8 +17,8 @@ interface Business {
   description?: string;
   category: string;
   address?: string;
-  city?: string;
-  state?: string;
+  towns?: string;
+  province_district?: string;
   zip_code?: string;
   phone?: string;
   email?: string;
@@ -237,7 +237,7 @@ export default function BusinessDetail() {
                   {business.address && (
                     <div className="flex items-center gap-3">
                       <MapPin className="h-5 w-5 text-muted-foreground" />
-                      <span>{business.address}, {business.city}, {business.state} {business.zip_code}</span>
+                      <span>{business.address}, {business.towns}, {business.province_district} {business.zip_code}</span>
                     </div>
                   )}
                   

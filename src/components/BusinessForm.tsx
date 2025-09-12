@@ -21,8 +21,8 @@ interface BusinessFormData {
   phone: string;
   licenseExpiredDate: string;
   address: string;
-  city: string;
-  state: string;
+  towns: string;
+  province_district: string;
   zipCode: string;
   website: string;
   facebookPage: string;
@@ -84,7 +84,7 @@ export default function BusinessForm({ onSuccess, editingBusiness }: BusinessFor
   const [listingPrice, setListingPrice] = useState<string>("");
   const [odooPrice, setOdooPrice] = useState<string>("");
   const [locations, setLocations] = useState<Array<{ id: string; province_district: string; towns: string[] }>>([]);
-  const [selectedProvince, setSelectedProvince] = useState<string>(editingBusiness?.state || "");
+  const [selectedProvince, setSelectedProvince] = useState<string>(editingBusiness?.province_district || "");
   const [availableTowns, setAvailableTowns] = useState<string[]>([]);
   
   const [formData, setFormData] = useState<BusinessFormData>({
@@ -94,8 +94,8 @@ export default function BusinessForm({ onSuccess, editingBusiness }: BusinessFor
     phone: editingBusiness?.phone || "",
     licenseExpiredDate: editingBusiness?.license_expired_date || "",
     address: editingBusiness?.address || "",
-    city: editingBusiness?.city || "",
-    state: editingBusiness?.state || "",
+    towns: editingBusiness?.towns || "",
+    province_district: editingBusiness?.province_district || "",
     zipCode: editingBusiness?.zip_code || "",
     website: editingBusiness?.website || "",
     facebookPage: editingBusiness?.facebook_page || "",
@@ -175,9 +175,9 @@ export default function BusinessForm({ onSuccess, editingBusiness }: BusinessFor
 
         setLocations(data || []);
         
-        // If editing and has existing state, set up towns
-        if (editingBusiness?.state) {
-          const location = data?.find(loc => loc.province_district === editingBusiness.state);
+        // If editing and has existing province_district, set up towns
+        if (editingBusiness?.province_district) {
+          const location = data?.find(loc => loc.province_district === editingBusiness.province_district);
           if (location) {
             setAvailableTowns(location.towns || []);
           }
@@ -189,7 +189,7 @@ export default function BusinessForm({ onSuccess, editingBusiness }: BusinessFor
 
     fetchPlanPrices();
     fetchLocations();
-  }, [editingBusiness?.state]);
+  }, [editingBusiness?.province_district]);
 
   const handleInputChange = (field: keyof BusinessFormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -210,7 +210,7 @@ export default function BusinessForm({ onSuccess, editingBusiness }: BusinessFor
 
   const handleProvinceChange = (province: string) => {
     setSelectedProvince(province);
-    setFormData(prev => ({ ...prev, state: province, city: "" }));
+    setFormData(prev => ({ ...prev, province_district: province, towns: "" }));
     
     // Find towns for selected province
     const location = locations.find(loc => loc.province_district === province);
@@ -414,8 +414,8 @@ export default function BusinessForm({ onSuccess, editingBusiness }: BusinessFor
         category: formData.categories.join(', '),
         phone: formData.phone,
         address: formData.address,
-        city: formData.city,
-        state: formData.state,
+        towns: formData.towns,
+        province_district: formData.province_district,
         zip_code: formData.zipCode,
         website: formData.website,
         image_url: logoUrl || editingBusiness?.image_url || null,
@@ -818,7 +818,7 @@ export default function BusinessForm({ onSuccess, editingBusiness }: BusinessFor
               </div>
               <div className="space-y-3">
                 <Label className="text-sm font-medium text-foreground">Town</Label>
-                <Select value={formData.city} onValueChange={(value) => handleInputChange('city', value)}>
+                <Select value={formData.towns} onValueChange={(value) => handleInputChange('towns', value)}>
                   <SelectTrigger className="border-2 border-border/60 bg-card shadow-sm focus:border-primary/50 focus:ring-2 focus:ring-primary/10 transition-all duration-200 hover:border-border/80">
                     <SelectValue placeholder="Select a town" />
                   </SelectTrigger>

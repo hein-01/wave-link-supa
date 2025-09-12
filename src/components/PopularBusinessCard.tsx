@@ -24,8 +24,8 @@ interface Business {
   name: string;
   description?: string;
   category?: string;
-  city?: string;
-  state?: string;
+  towns?: string;
+  province_district?: string;
   rating?: number;
   image_url?: string;
   website?: string;
@@ -525,10 +525,10 @@ export const PopularBusinessCard = ({ business }: PopularBusinessCardProps) => {
             </div>
           </div>
           
-          {business.city && business.state && (
+          {business.towns && business.province_district && (
             <p className="text-xs text-muted-foreground flex items-center gap-1">
               <MapPin className="w-3 h-3 text-gray-500" />
-              {business.city}, {business.state}
+              {business.towns}, {business.province_district}
             </p>
           )}
           
