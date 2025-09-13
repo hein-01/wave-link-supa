@@ -298,30 +298,35 @@ export const PopularBusinessCard = ({ business }: PopularBusinessCardProps) => {
     <>
       <Card className="group w-[290px] h-[555px] flex flex-col shadow-xl border-2 hover:shadow-2xl hover:border-primary/20 transition-all duration-300 mx-auto bg-gradient-to-b from-background to-muted/20">
       <div className="relative overflow-hidden rounded-t-lg">
-        <Swiper
-          modules={[Navigation, Pagination]}
-          navigation={{
-            nextEl: `.swiper-button-next-${business.id}`,
-            prevEl: `.swiper-button-prev-${business.id}`,
-            enabled: true
-          }}
-          pagination={{ 
-            clickable: true,
-            enabled: false 
-          }}
-          spaceBetween={0}
-          slidesPerView={1}
-          loop={hasMultipleImages}
-          className="w-full h-[290px] product-carousel"
-        >
+          <Swiper
+            modules={[Navigation, Pagination]}
+            navigation={{
+              nextEl: `.swiper-button-next-${business.id}`,
+              prevEl: `.swiper-button-prev-${business.id}`,
+              enabled: true
+            }}
+            pagination={{ 
+              clickable: true,
+              enabled: false 
+            }}
+            spaceBetween={0}
+            slidesPerView={1}
+            loop={hasMultipleImages}
+            className="product-carousel"
+            style={{ width: '290px', height: '290px' }}
+          >
           {business.product_images && business.product_images.length > 0 ? (
             business.product_images.map((image, index) => (
               <SwiperSlide key={index}>
                 <img
                   src={`${image}?w=290&h=290&fit=crop`}
                   alt={`${business.name} product ${index + 1}`}
-                  className="w-full h-[290px]"
-                  style={{ objectFit: 'none', objectPosition: 'top left' }}
+                  style={{ 
+                    width: '290px', 
+                    height: '290px', 
+                    objectFit: 'none', 
+                    objectPosition: 'top left' 
+                  }}
                 />
               </SwiperSlide>
             ))
@@ -330,8 +335,12 @@ export const PopularBusinessCard = ({ business }: PopularBusinessCardProps) => {
               <img
                 src={`${business.image_url}?w=290&h=290&fit=crop`}
                 alt={`${business.name} main image`}
-                className="w-full h-[290px]"
-                style={{ objectFit: 'none', objectPosition: 'top left' }}
+                style={{ 
+                  width: '290px', 
+                  height: '290px', 
+                  objectFit: 'none', 
+                  objectPosition: 'top left' 
+                }}
               />
             </SwiperSlide>
           ) : (
@@ -339,8 +348,12 @@ export const PopularBusinessCard = ({ business }: PopularBusinessCardProps) => {
               <img
                 src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=290&h=290&fit=crop"
                 alt={`${business.name} products`}
-                className="w-full h-[290px]"
-                style={{ objectFit: 'none', objectPosition: 'top left' }}
+                style={{ 
+                  width: '290px', 
+                  height: '290px', 
+                  objectFit: 'none', 
+                  objectPosition: 'top left' 
+                }}
               />
             </SwiperSlide>
           )}
@@ -519,7 +532,7 @@ export const PopularBusinessCard = ({ business }: PopularBusinessCardProps) => {
                 src={`${business.image_url}?w=40&h=40&fit=crop` || "https://images.unsplash.com/photo-1592659762303-90081d34b277?w=40&h=40&fit=crop"} 
                 alt="Business logo" 
                 className="w-10 h-10 rounded-md border border-gray-300"
-                style={{ objectFit: 'none', objectPosition: 'top left' }}
+                style={{ objectFit: 'cover', objectPosition: 'center' }}
               />
             </div>
             <div className="flex-1">
