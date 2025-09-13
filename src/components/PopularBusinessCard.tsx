@@ -320,7 +320,8 @@ export const PopularBusinessCard = ({ business }: PopularBusinessCardProps) => {
                 <img
                   src={`${image}?w=290&h=290&fit=crop`}
                   alt={`${business.name} product ${index + 1}`}
-                  className="w-full h-[290px] object-cover"
+                  className="w-full h-[290px]"
+                  style={{ objectFit: 'none', objectPosition: 'top left' }}
                 />
               </SwiperSlide>
             ))
@@ -329,7 +330,8 @@ export const PopularBusinessCard = ({ business }: PopularBusinessCardProps) => {
               <img
                 src={`${business.image_url}?w=290&h=290&fit=crop`}
                 alt={`${business.name} main image`}
-                className="w-full h-[290px] object-cover"
+                className="w-full h-[290px]"
+                style={{ objectFit: 'none', objectPosition: 'top left' }}
               />
             </SwiperSlide>
           ) : (
@@ -337,7 +339,8 @@ export const PopularBusinessCard = ({ business }: PopularBusinessCardProps) => {
               <img
                 src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=290&h=290&fit=crop"
                 alt={`${business.name} products`}
-                className="w-full h-[290px] object-cover"
+                className="w-full h-[290px]"
+                style={{ objectFit: 'none', objectPosition: 'top left' }}
               />
             </SwiperSlide>
           )}
