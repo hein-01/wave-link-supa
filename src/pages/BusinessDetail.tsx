@@ -203,9 +203,10 @@ export default function BusinessDetail() {
             {business.image_url && (
               <div className="relative">
                 <img
-                  src={business.image_url}
+                  src={`${business.image_url}?w=290&h=290&fit=crop`}
                   alt={business.name}
-                  className="w-full h-64 object-cover rounded-lg"
+                  className="w-full h-64"
+                  style={{ objectFit: 'none', objectPosition: 'top left' }}
                 />
               </div>
             )}

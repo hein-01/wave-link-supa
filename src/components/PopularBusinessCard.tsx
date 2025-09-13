@@ -516,9 +516,10 @@ export const PopularBusinessCard = ({ business }: PopularBusinessCardProps) => {
           <div className="flex items-center gap-2">
             <div className="relative">
               <img 
-                src={business.image_url || "https://images.unsplash.com/photo-1592659762303-90081d34b277?w=40&h=40&fit=crop"} 
+                src={`${business.image_url}?w=40&h=40&fit=crop` || "https://images.unsplash.com/photo-1592659762303-90081d34b277?w=40&h=40&fit=crop"} 
                 alt="Business logo" 
-                className="w-10 h-10 rounded-md object-cover border border-gray-300"
+                className="w-10 h-10 rounded-md border border-gray-300"
+                style={{ objectFit: 'none', objectPosition: 'top left' }}
               />
             </div>
             <div className="flex-1">
