@@ -586,7 +586,7 @@ export const FutsalCourtForm = () => {
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground mb-6">
-              This list of player rules is based on data from similar field rental businesses in other countries and current global industry standards. Please select only the rules that apply to your business.
+              This list of player rules is based on data from similar field rental businesses in other countries and current global industry standards. Please choose the rules that are relevant to your business. You can refer to the FAQ section for more information on why similar businesses worldwide implement these policies.
             </p>
 
             <div className="mb-6">
