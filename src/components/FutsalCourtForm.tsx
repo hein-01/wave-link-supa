@@ -618,6 +618,24 @@ export const FutsalCourtForm = () => {
                     This is a mandatory, non-negotiable rule for nearly all sports facility rentals and is primarily driven by three core concerns: Liability, Safety, and Facility Protection. By requiring a responsible adult, the facility is legally transferring the direct supervision and immediate liability for the minor's safety and conduct to that adult (parent, guardian, or authorized coach). In a severe emergency, the facility staff cannot authorize medical treatment for a minor. The accompanying adult serves as the crucial link to parents, providing immediate consent for medical care.
                   </AccordionContent>
                 </AccordionItem>
+
+                <AccordionItem value="item-4">
+                  <AccordionTrigger className="text-left">
+                    Proper Footwear Required(Futsal shoes or flat-soled shoes only)
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground leading-relaxed">
+                    Cleats elevate the heel and change a player's balance and center of gravity, which is not ideal for the fast, technical movements of Futsal. Futsal Shoes are the best option since they are low-profile, lightweight, and have a flat, gum-rubber sole for optimal grip and ball feel. The "No Cleats" rule is not arbitrary. It's a crucial measure to protect the facility's expensive investment and, more importantly, to keep players safe from preventable injuries while preserving the fast, skillful nature of the game.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-5">
+                  <AccordionTrigger className="text-left">
+                    Why No Glass Bottles / Containers?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground leading-relaxed">
+                    If a glass bottle shatters, it creates an invisible field of tiny, sharp shards. Players frequently slide, dive, and fall on the court. A fall onto broken glass can cause deep cuts, severed tendons, or serious ligament damage. Such injuries can be career-ending for athletes and have lifelong consequences. The risk is simply too high. Even if it doesn't break, glass being knocked over can scratch and gouge the expensive court surface (whether it's wood, synthetic, or acrylic). The rule is a non-negotiable safety measure. The combination of high-intensity athletic movement and the fragile, dangerous nature of broken glass makes it an unacceptable risk in a Futsal environment. It protects the players, the facility, and the business itself.
+                  </AccordionContent>
+                </AccordionItem>
               </Accordion>
             </div>
 
