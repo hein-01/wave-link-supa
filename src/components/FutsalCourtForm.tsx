@@ -112,7 +112,6 @@ const rules = [
   "No alcohol",
   "No Glass Bottles / Containers",
   "Any damage to the facility will be charged to the booker",
-  "Keep facilities clean",
 ];
 
 export const FutsalCourtForm = () => {
@@ -621,7 +620,7 @@ export const FutsalCourtForm = () => {
 
                 <AccordionItem value="item-4">
                   <AccordionTrigger className="text-left">
-                    Proper Footwear Required(Futsal shoes or flat-soled shoes only)
+                    Why Proper Footwear Required(Futsal shoes or flat-soled shoes only)?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground leading-relaxed">
                     Cleats elevate the heel and change a player's balance and center of gravity, which is not ideal for the fast, technical movements of Futsal. Futsal Shoes are the best option since they are low-profile, lightweight, and have a flat, gum-rubber sole for optimal grip and ball feel. The "No Cleats" rule is not arbitrary. It's a crucial measure to protect the facility's expensive investment and, more importantly, to keep players safe from preventable injuries while preserving the fast, skillful nature of the game.
