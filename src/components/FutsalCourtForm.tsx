@@ -105,13 +105,13 @@ const rules = [
   "Respect all staff and other players",
   "No competitions without prior permission",
   "Please leave the court on time for the next group.",
-  "Players under 18 supervised",
+  "Players under 18 to be accompanied and supervised by a responsible adult",
   "Proper Footwear Required(Futsal shoes or flat-soled shoes only)",
   "No smoking",
   "No littering (Garbage bins provided)",
   "No alcohol",
   "No Glass Bottles / Containers",
-  "Report any damage",
+  "Any damage to the facility will be charged to the booker",
   "Keep facilities clean",
 ];
 
@@ -612,7 +612,7 @@ export const FutsalCourtForm = () => {
 
                 <AccordionItem value="item-3">
                   <AccordionTrigger className="text-left">
-                    Why some businesses require all minors to be accompanied and supervised by a responsible adult at all times?
+                    Why some field rental businesses require players under 18 to be accompanied and supervised by a responsible adult?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground leading-relaxed">
                     This is a mandatory, non-negotiable rule for nearly all sports facility rentals and is primarily driven by three core concerns: Liability, Safety, and Facility Protection. By requiring a responsible adult, the facility is legally transferring the direct supervision and immediate liability for the minor's safety and conduct to that adult (parent, guardian, or authorized coach). In a severe emergency, the facility staff cannot authorize medical treatment for a minor. The accompanying adult serves as the crucial link to parents, providing immediate consent for medical care.
