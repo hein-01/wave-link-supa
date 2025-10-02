@@ -428,7 +428,9 @@ export const FutsalCourtForm = () => {
                     <FormControl>
                       <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                     </FormControl>
-                    <FormLabel className="!mt-0">WeChat Pay</FormLabel>
+                    <FormLabel className="!mt-0">
+                      WeChat Pay <span className="text-xs text-muted-foreground">(Please provide the phone number and name registered with your PayNow account.)</span>
+                    </FormLabel>
                   </FormItem>
                 )}
               />
@@ -451,7 +453,7 @@ export const FutsalCourtForm = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Input placeholder="Full Name" {...field} />
+                          <Input placeholder="Name" {...field} />
                         </FormControl>
                       </FormItem>
                     )}
@@ -469,7 +471,9 @@ export const FutsalCourtForm = () => {
                     <FormControl>
                       <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                     </FormControl>
-                    <FormLabel className="!mt-0">KPay</FormLabel>
+                    <FormLabel className="!mt-0">
+                      KPay <span className="text-xs text-muted-foreground">(Please provide the phone number and name registered with your KPay account.)</span>
+                    </FormLabel>
                   </FormItem>
                 )}
               />
@@ -492,7 +496,7 @@ export const FutsalCourtForm = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Input placeholder="Full Name" {...field} />
+                          <Input placeholder="Name" {...field} />
                         </FormControl>
                       </FormItem>
                     )}
@@ -510,7 +514,9 @@ export const FutsalCourtForm = () => {
                     <FormControl>
                       <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                     </FormControl>
-                    <FormLabel className="!mt-0">Paylah</FormLabel>
+                    <FormLabel className="!mt-0">
+                      Paylah <span className="text-xs text-muted-foreground">(Please provide the phone number and name registered with your Paylah account.)</span>
+                    </FormLabel>
                   </FormItem>
                 )}
               />
@@ -533,7 +539,7 @@ export const FutsalCourtForm = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Input placeholder="Full Name" {...field} />
+                          <Input placeholder="Name" {...field} />
                         </FormControl>
                       </FormItem>
                     )}
