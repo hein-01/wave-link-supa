@@ -183,10 +183,10 @@ export const FutsalCourtForm = () => {
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
     
-    if (images.length + files.length > 3) {
+    if (images.length + files.length > 2) {
       toast({
         title: "Too many images",
-        description: "You can only upload up to 3 images",
+        description: "You can only upload up to 2 images",
         variant: "destructive",
       });
       return;
@@ -704,14 +704,14 @@ export const FutsalCourtForm = () => {
           </CardContent>
         </Card>
 
-        {/* 8. Product Images */}
+        {/* 8. Upload Images */}
         <Card>
           <CardHeader>
-            <CardTitle>Product Images</CardTitle>
+            <CardTitle>Upload Images</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="text-sm text-muted-foreground">
-              Upload up to 3 images (PNG or JPG, max 1MB each)
+              Please use your mobile phone to take photos. No cropping or editing is needed. You may upload up to two images(max 1MB each).
             </div>
             
             {imagePreview.length > 0 && (
@@ -737,7 +737,7 @@ export const FutsalCourtForm = () => {
               </div>
             )}
 
-            {images.length < 3 && (
+            {images.length < 2 && (
               <div>
                 <Input
                   type="file"
