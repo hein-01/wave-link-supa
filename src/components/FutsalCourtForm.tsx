@@ -71,6 +71,7 @@ const formSchema = z.object({
   tiktok: z.string().optional(),
   infoWebsite: z.string().optional(),
   startingPrice: z.string().min(1, "Starting price is required"),
+  posLiteOption: z.enum(["accept", "postpone"]),
   paymentOption: z.enum(["stripe", "bank"]),
 });
 
@@ -152,6 +153,7 @@ export const FutsalCourtForm = () => {
       tiktok: "",
       infoWebsite: "",
       startingPrice: "",
+      posLiteOption: "postpone",
       paymentOption: "stripe",
     },
   });
@@ -929,7 +931,61 @@ export const FutsalCourtForm = () => {
           </CardContent>
         </Card>
 
-        {/* 13. Payment Options */}
+        {/* 13. Listing Validity & POS Lite System */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Listing Validity & POS Lite System</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-4 text-sm text-muted-foreground">
+              <p>
+                This listing is valid for one full year (365 days) for a fee of just $3. We take no commission or cut from any successful bookings/transactions made with your customers. The platform will provide access to a booking management system as well as a financial management tool. This tool is essential for tracking and analyzing key calculations, including: Daily/Monthly Sales, Profit, Expenses, and potential Losses.
+              </p>
+              
+              <div className="space-y-2">
+                <h4 className="font-semibold text-foreground">POS Lite</h4>
+                <p>
+                  If you plan to sell physical items (such as drinks, snacks, rental shoes, balls, or shirts), we recommend the POS Lite system for just $10 per year. Your Booking Management System, which comes with your service listing, manages your schedule and time slots. POS Lite, however, handles the entire retail side and your tangible goods by tracking your inventory instantly to prevent stockouts and waste, providing quick payment processing (cash, card, mobile) for faster customer checkout, speeding up sales with barcode scanning using a phone camera.
+                </p>
+                <p>
+                  The benefits of combining all your business data into a single online database are enormous. Sales revenue from physical goods is now recorded in real-time and immediately combined with your rental income. It will enable Owners and staff gain immediate, complete control over bookings, and money(real-time cash flow) from any device (laptop, mobile, tablet), anywhere, at any time. Live Stock Management: When a drink is sold using POS Lite, the inventory count updates instantly. Staff know immediately if they need to reorder stock without checking a clipboard, allowing them to make proactive decisions
+                </p>
+              </div>
+            </div>
+
+            <FormField
+              control={form.control}
+              name="posLiteOption"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      className="space-y-3"
+                    >
+                      <div className="flex items-start space-x-3">
+                        <RadioGroupItem value="accept" id="accept-pos" className="mt-1" />
+                        <Label htmlFor="accept-pos" className="font-normal cursor-pointer">
+                          Okay, I will accept your offer of POS Lite at $10/year.
+                        </Label>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <RadioGroupItem value="postpone" id="postpone-pos" className="mt-1" />
+                        <Label htmlFor="postpone-pos" className="font-normal cursor-pointer">
+                          I would like to postpone the adoption of POS Lite. I will proceed with the listing only at this time.
+                        </Label>
+                      </div>
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </CardContent>
+        </Card>
+
+        {/* 14. Payment Options */}
         <Card>
           <CardHeader>
             <CardTitle>Payment Options</CardTitle>
