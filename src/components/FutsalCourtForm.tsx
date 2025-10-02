@@ -78,6 +78,7 @@ const formSchema = z.object({
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
 const facilities = [
+  "Shoes Rental",
   "Changing Rooms",
   "Locker Rental",
   "Towel Rental",
@@ -86,6 +87,7 @@ const facilities = [
   "Free Drinking Water",
   "Energy Drinks",
   "Soft Drinks",
+  "Snacks",
   "Pain Relief Spray/Balm",
   "Antiseptic Wipes/Swabs",
   "Plasters",
@@ -98,7 +100,8 @@ const facilities = [
   "Free Wi-Fi",
   "Floodlights (for night games)",
   "Seating Area / Bleachers",
-  "Near Metro/Bus Stop",
+  "Near Bus Stop",
+  "Near Train Station",
 ];
 
 const rules = [
