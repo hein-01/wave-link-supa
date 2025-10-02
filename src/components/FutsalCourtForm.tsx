@@ -113,9 +113,13 @@ const rules = [
   "Proper Footwear Required(Futsal shoes or flat-soled shoes only)",
   "No smoking",
   "No littering (Garbage bins provided)",
-  "No alcohol",
+  "No Alcohol or Drugs",
   "No Glass Bottles / Containers",
   "Any damage to the facility will be charged to the booker",
+  "Cancellations made more than 48 hours in advance receive a full refund or credit.",
+  "Cancellations made within 24 hours forfeit the deposit/fee.",
+  "The business reserves the right to cancel bookings due to unforeseen field issues (e.g., weather) and will offer a full refund or reschedule.",
+  "Goals are not to be moved by renters unless explicitly instructed by staff.",
 ];
 
 export const FutsalCourtForm = () => {
